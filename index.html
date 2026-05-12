@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToolVortex | 125+ Free Online Tools</title>
     <!-- Monetag SDK -->
-    <script src="https://groleone.com/tag.min.js" data-zone="10415922" async data-cfasync="false"></script>
+    <script src="https://quge5.com/88/tag.min.js" data-zone="238525" async data-cfasync="false"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Service Worker Registration for Monetag -->
+    <!-- Service Worker: unregister stale SWs then register correct one -->
     <script>
       if ('serviceWorker' in navigator) {
+        // Unregister any old/broken service workers first
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister();
+          }
+        });
+        // Register with correct base path
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js');
         });
